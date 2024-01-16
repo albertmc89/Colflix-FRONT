@@ -1,0 +1,59 @@
+.container {
+  background: url("/public/img/background-login.webp"),
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0,
+      rgba(0, 0, 0, 0) 60%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login-container__subtitle {
+  font-weight: 900;
+}
+
+.login-container {
+  color: var(--white);
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 20px;
+  border-radius: 5px;
+  height: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.form-input {
+  padding: 1.5rem 1rem 0.5rem;
+  color: rgb(251, 250, 250);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: rgba(9, 9, 9, 0.569);
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input::placeholder {
+  color: rgb(204, 204, 204);
+  opacity: 0.9;
+}
