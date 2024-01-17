@@ -1,6 +1,7 @@
 import logo from "/img/logo.png";
 import "./Header.css";
-import Button from "../Button/Button";
+import { NavLink } from "react-router-dom";
+import paths from "../../paths/paths";
 
 const Header = (): React.ReactElement => {
   // const logout = async () => {
@@ -11,9 +12,13 @@ const Header = (): React.ReactElement => {
   return (
     <header className="header">
       <div className="title-container">
-        <img className="logo" src={logo} alt="logo netflix" />
+        <div className="logo-container">
+          <img className="logo" src={logo} alt="logo netflix" />
+        </div>
         <div className="sign-container">
-          <Button className="button--solid">Log In</Button>
+          <NavLink className="login" title="Log in" to={paths.login}>
+            Log In
+          </NavLink>
           <select className="form__select" id="language">
             <option value="Español">ES</option>
             <option value="English">EN</option>
