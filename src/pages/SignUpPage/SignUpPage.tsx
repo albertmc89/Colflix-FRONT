@@ -2,20 +2,13 @@ import { useState } from "react";
 import "./SignUpPage.css";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { Navigate } from "react-router-dom";
 
 const SignUpPage = (): React.ReactElement => {
-  const [user] = useAuthState(auth);
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  if (user) {
-    return <Navigate to="/login" />;
-  }
 
   const registerEmailPassword = async () => {
     try {
@@ -36,15 +29,15 @@ const SignUpPage = (): React.ReactElement => {
   return (
     <div className="container">
       <Header />
-      <article className="login-container">
-        <h1 className="login-container__subtitle">
-          Unlimited movies, TV shows and more
+      <article className="signup-container">
+        <h1 className="signup-container__subtitle">
+          Unlimited movies, TV shows, and more
         </h1>
-        <h4 className="login-container__subtext">
+        <h4 className="signup-container__subtext">
           Watch anywhere. Cancel anytime.
         </h4>
-        <h5 className="login-container__subtext">
-          Ready to watch? Enter your email to create or restart membership
+        <h5 className="signup-container__subtext">
+          Ready to watch? Enter your email to create or restart your membership.
         </h5>
         <form className="form-container" onSubmit={submitRegister}>
           <input
@@ -53,6 +46,7 @@ const SignUpPage = (): React.ReactElement => {
             placeholder="Email"
             id="email"
             value={registerEmail}
+            required
             onChange={(event) => {
               setRegisterEmail(event.target.value);
             }}
@@ -60,11 +54,12 @@ const SignUpPage = (): React.ReactElement => {
           {showPassword && (
             <input
               className="form-input"
-              name="password"
               type="password"
               placeholder="Password"
               id="password"
+              min="7"
               value={registerPassword}
+              required
               onChange={(event) => {
                 setRegisterPassword(event.target.value);
               }}
@@ -80,9 +75,14 @@ const SignUpPage = (): React.ReactElement => {
             </Button>
           )}
         </form>
-        <Button className="button--solid" actionOnClick={registerEmailPassword}>
-          Sign up
-        </Button>
+        {showPassword && (
+          <Button
+            className="button--solid"
+            actionOnClick={registerEmailPassword}
+          >
+            Sign up
+          </Button>
+        )}
       </article>
     </div>
   );
