@@ -1,11 +1,5 @@
 .container {
-  background: url("/public/img/background-login.webp"),
-    linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.8) 0,
-      rgba(0, 0, 0, 0) 60%,
-      rgba(0, 0, 0, 0.8) 100%
-    );
+  background: url("/public/img/background-login.webp");
   min-height: 100vh;
   background-position: center;
   background-size: cover;
@@ -17,6 +11,13 @@
 
 .login-container__subtitle {
   font-weight: 900;
+  font-size: 2rem;
+}
+
+.login-container__subtext {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .login-container {
@@ -30,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 20px;
 }
 
@@ -38,12 +39,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-top: 20px;
 }
 
 .form-input {
-  padding: 1.5rem 1rem 0.5rem;
+  padding: 1rem;
   color: rgb(251, 250, 250);
   font-size: 1rem;
   font-weight: 400;
@@ -56,4 +57,17 @@
 input::placeholder {
   color: rgb(204, 204, 204);
   opacity: 0.9;
+}
+
+.button--big {
+  display: flex;
+  gap: 3px;
+  padding: 10px;
+  align-items: center;
+  height: 3.125rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: white;
 }
