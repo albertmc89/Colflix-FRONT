@@ -1,15 +1,15 @@
 .header {
-  padding: 20px;
+  padding: 0 20px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   width: 100%;
 }
 
 .title-container {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
+  width: 100%;
 }
 
 .sign-container {
@@ -19,11 +19,14 @@
 }
 
 .logo {
-  width: 5.8rem;
-  height: 4.1rem;
+  width: 5rem;
 }
 
-.button--solid {
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
   background-color: var(--secondary-color);
   font-size: 0.9rem;
   font-weight: 700;
