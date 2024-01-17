@@ -1,0 +1,42 @@
+.header {
+  padding: 20px;
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.sign-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 5.8rem;
+  height: 4.1rem;
+}
+
+.button--solid {
+  background-color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: white;
+  border-radius: 3px;
+  height: 32px;
+}
+
+.form__select {
+  height: 32px;
+  width: 45px;
+  background-color: rgba(9, 9, 9, 0.775);
+  border: 1px solid grey;
+  color: var(--white);
+  border-radius: 3px;
+}
