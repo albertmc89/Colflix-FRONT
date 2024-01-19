@@ -1,0 +1,11 @@
+.wrap-home-container {
+  background-color: var(--black);
+  min-height: 100vh;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: start;
+  padding: 20px;
+}
