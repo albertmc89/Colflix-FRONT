@@ -1,14 +1,22 @@
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import "./SignUpPage.css";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import paths from "../../paths/paths";
+import { Navigate } from "react-router-dom";
 
 const SignUpPage = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  if (user) {
+    return <Navigate to={paths.home} />;
+  }
 
   const registerEmailPassword = async () => {
     try {

@@ -3,14 +3,20 @@ import { useState } from "react";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import "./LoginPage.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import paths from "../../paths/paths";
 
 const LoginPage = (): React.ReactElement => {
+  const [user] = useAuthState(auth);
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  if (user) {
+    return <Navigate to={paths.home} />;
+  }
 
   const loginEmailPassword = async () => {
     try {
