@@ -11,6 +11,7 @@
   --primary-font: "Mulish", sans-serif;
   --background-opacity: rgb(0, 0, 0, 0.4);
   --background-image: url(/public/img/background-login.webp);
+  --background-home: url(/public/img/strangerthings.webp);
 }
 
 *,
