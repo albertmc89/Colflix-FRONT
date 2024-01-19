@@ -7,7 +7,11 @@ import Button from "../Button/Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
-const Navigation = (): React.ReactElement => {
+interface NavProps {
+  isScrolled: boolean;
+}
+
+const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -21,7 +25,7 @@ const Navigation = (): React.ReactElement => {
 
   return (
     <>
-      <nav className="navigation">
+      <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
         <ul className="navigation__list">
           <li className="navigation__link">
             <NavLink
@@ -99,11 +103,7 @@ const Navigation = (): React.ReactElement => {
               }}
             />
           </div>
-          <Button
-            text="Log out"
-            actionOnClick={logout}
-            className="logout-button"
-          >
+          <Button actionOnClick={logout} className="logout-button">
             <img src="img/logout.png" alt="logout icon" />
           </Button>
         </div>
