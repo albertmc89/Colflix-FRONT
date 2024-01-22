@@ -8,6 +8,7 @@ const paths: PathsStructure = {
   tv: "/tv",
   movies: "/movies",
   mylist: "/mylist",
+  player: "/player",
 };
 
 export default paths;

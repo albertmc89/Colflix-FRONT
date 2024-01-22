@@ -7,6 +7,7 @@ import Header from "../Header/Header";
 import { auth } from "../../firebase";
 import Homepage from "../../pages/Homepage/Homepage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Player from "../Player/Player";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -24,6 +25,14 @@ const App = (): React.ReactElement => {
             element={
               <ProtectedRoute>
                 <Homepage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={paths.player}
+            element={
+              <ProtectedRoute>
+                <Player />
               </ProtectedRoute>
             }
           />
