@@ -6,4 +6,5 @@ export interface PathsStructure {
   movies: string;
   tv: string;
   mylist: string;
+  player: string;
 }

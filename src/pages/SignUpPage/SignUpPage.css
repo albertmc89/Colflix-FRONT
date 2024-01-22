@@ -82,3 +82,18 @@ input::placeholder {
   border-radius: 5px;
   height: 32px;
 }
+
+@media (min-width: 768px) {
+  .container {
+    justify-content: space-around;
+  }
+
+  .signup-container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-container {
+    width: 50%;
+  }
+}

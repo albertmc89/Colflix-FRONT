@@ -1,5 +1,4 @@
 import "./Homepage.css";
-import logo from "/img/logo.png";
 import play from "/img/play.png";
 import info from "/img/info.svg";
 import logostrangerthings from "/img/logostrangerthings.png";
@@ -7,7 +6,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { useState } from "react";
-import Button from "../../components/Button/Button";
+import { NavLink } from "react-router-dom";
+import paths from "../../paths/paths";
 
 const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -20,25 +20,21 @@ const Homepage = (): React.ReactElement => {
 
   return (
     <>
+      {user && <Navbar isScrolled={isScrolled} />}
       <div className="wrap-home-container">
-        <div className="nav-container">
-          {user && <Navbar isScrolled={isScrolled} />}
-          <img className="logo" src={logo} alt="logo netflix" />
-        </div>
         <article className="title-wrapper">
           <div className="logo-series">
             <img src={logostrangerthings} alt="logo netflix" />
           </div>
-
           <div className="button-container">
-            <Button className="button-flex">
+            <NavLink className="button-flex" to={paths.player}>
               <img src={play} alt="play icon" />
               Play
-            </Button>
-            <Button className="button-flex">
+            </NavLink>
+            <NavLink className="button-flex" to={paths.home}>
               <img src={info} alt="info icon" />
               More info
-            </Button>
+            </NavLink>
           </div>
         </article>
       </div>

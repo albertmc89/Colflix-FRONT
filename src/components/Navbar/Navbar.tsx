@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import logonetflix from "/img/logonetflix.svg";
 
 interface NavProps {
   isScrolled: boolean;
@@ -26,6 +27,9 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
   return (
     <>
       <nav className={`navigation ${isScrolled ? "scrolled" : ""}`}>
+        <div className="logo-container">
+          <img className="logo" src={logonetflix} alt="logo netflix" />
+        </div>
         <ul className="navigation__list">
           <li className="navigation__link">
             <NavLink

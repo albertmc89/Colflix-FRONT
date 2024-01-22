@@ -67,10 +67,10 @@ const SignUpPage = (): React.ReactElement => {
               id="password"
               min="7"
               value={registerPassword}
-              required
               onChange={(event) => {
                 setRegisterPassword(event.target.value);
               }}
+              required
             />
           )}
           {!showPassword && (

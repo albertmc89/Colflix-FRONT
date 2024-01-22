@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  position: sticky;
 }
 
 .title-container {
@@ -17,6 +16,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-top: 20px;
 }
 
 .logo {

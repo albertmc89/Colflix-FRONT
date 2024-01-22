@@ -3,15 +3,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  position: relative;
   height: 100vh;
   padding: 20px;
-}
-
-.nav-container {
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: start;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
 }
 
 .title-wrapper {
