@@ -1,7 +1,7 @@
-import logo from "/img/logo.png";
 import "./Header.css";
 import { NavLink } from "react-router-dom";
 import paths from "../../paths/paths";
+import netflixN from "/img/netflixN.png";
 
 const Header = (): React.ReactElement => {
   // const logout = async () => {
@@ -12,10 +12,8 @@ const Header = (): React.ReactElement => {
   return (
     <header className="header">
       <div className="title-container">
-        <div className="logo-container">
-          <img className="logo" src={logo} alt="logo netflix" />
-        </div>
         <div className="sign-container">
+          <img src={netflixN} alt="" />
           <NavLink className="login" title="Log in" to={paths.login}>
             Log In
           </NavLink>
