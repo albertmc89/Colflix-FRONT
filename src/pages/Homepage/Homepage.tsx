@@ -11,10 +11,10 @@ import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
   loadMoviesActionCreator,
-} from "../../store/netflix/netflix";
+} from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
-import useNetflixApi from "../../hooks/useNetflixApi";
 import CardSlider from "../../components/CardSlider/CardSlider";
+import useNetflixApi from "../../hooks/useNetflixApi";
 
 const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
