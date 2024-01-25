@@ -4,9 +4,10 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { netflixReducer } from "./netflix/netflixSlice";
 
 const rootReducer = combineReducers({
-  // insert the slices reducers
+  netflixState: netflixReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
