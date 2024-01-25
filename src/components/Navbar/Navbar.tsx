@@ -85,7 +85,7 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
             <Button
               className="search-button"
               onFocus={() => setShowSearch(true)}
-              onBlur={() => {
+              onMouseLeave={() => {
                 if (inputHover) setShowSearch(false);
               }}
             >
