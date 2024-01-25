@@ -89,7 +89,7 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
                 if (inputHover) setShowSearch(false);
               }}
             >
-              <img src="img/lupa.png" alt="lupa icon" />
+              <img src="img/lupa.png" alt="lupa icon" width={24} height={24} />
             </Button>
             <input
               className="search-input"
@@ -108,7 +108,7 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
             />
           </div>
           <Button actionOnClick={logout} className="logout-button">
-            <img src="img/logout.png" alt="logout icon" />
+            <img src="img/salir.png" alt="logout icon" width={28} height={28} />
           </Button>
         </div>
       </nav>
