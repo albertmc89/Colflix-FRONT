@@ -53,6 +53,7 @@ nav {
 .search-button {
   display: flex;
   align-items: center;
+  width: 40px;
 }
 
 .search-input {
@@ -104,11 +105,10 @@ nav {
   }
 
   .navigation__link {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .logo {
     width: 120px;
-    height: 120px;
   }
 }

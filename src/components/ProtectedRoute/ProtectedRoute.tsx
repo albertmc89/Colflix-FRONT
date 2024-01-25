@@ -10,7 +10,7 @@ const ProtectedRoute = ({
   const [user] = useAuthState(auth);
 
   if (!user) {
-    return <Navigate to={paths.home} />;
+    return <Navigate to={paths.signup} />;
   }
 
   return <>{children}</>;
