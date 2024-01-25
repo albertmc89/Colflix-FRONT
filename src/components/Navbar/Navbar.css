@@ -5,7 +5,6 @@ nav {
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -52,8 +51,6 @@ nav {
 }
 
 .search-button {
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
 }
@@ -87,8 +84,7 @@ nav {
 }
 
 .logout-button {
-  width: 32px;
-  height: 32px;
+  width: 40px;
   display: flex;
   align-items: center;
 }
@@ -100,7 +96,7 @@ nav {
 @media (min-width: 768px) {
   .navigation {
     flex-direction: row;
-    padding: 20px;
+    padding: 0 20px;
   }
 
   .navigation__list {
