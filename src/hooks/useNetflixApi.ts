@@ -3,10 +3,13 @@ import { auth } from "../firebase";
 import { useIdToken } from "react-firebase-hooks/auth";
 import axios from "axios";
 import { API_KEY, TMBD_BASE_URL } from "../utils/constants";
-import { ApiMovies, ApiTv } from "../types";
+import { ApiMovieType, ApiMovies, ApiTv } from "../types";
+import paths from "../paths/paths";
+import { useNavigate } from "react-router-dom";
 
 const useNetflixApi = () => {
   const [user] = useIdToken(auth);
+  const navigate = useNavigate();
 
   const getGenres = useCallback(async () => {
     try {
@@ -69,10 +72,36 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
+  const loadSelectedMovieApi = useCallback(
+    async (id: string) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
+
+        const newId = Number(id);
+        const token = await user.getIdToken();
+        const { data } = await axios.get<ApiMovieType>(
+          `${TMBD_BASE_URL}/movie/${newId}?api_key=${API_KEY}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        return data;
+      } catch (error: unknown) {
+        navigate(paths.home);
+        throw new Error("Couldn't load the movie");
+      }
+    },
+    [user, navigate],
+  );
+
   return {
     getGenres,
     getMovies,
     getTv,
+    loadSelectedMovieApi,
   };
 };
 
