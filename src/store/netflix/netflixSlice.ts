@@ -27,6 +27,13 @@ const netflixSlice = createSlice({
       ...currentMoviesState,
       movies: action.payload,
     }),
+    loadSelectedMovie: (
+      currentMoviesState: NetflixState,
+      action: PayloadAction<Movie>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      selectedPlayer: action.payload,
+    }),
   },
 });
 
@@ -34,4 +41,5 @@ export const netflixReducer = netflixSlice.reducer;
 export const {
   loadGenres: loadGenresActionCreator,
   loadMovies: loadMoviesActionCreator,
+  loadSelectedMovie: loadSelectedMovieActionCreator,
 } = netflixSlice.actions;
