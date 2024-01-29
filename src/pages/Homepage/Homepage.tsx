@@ -1,6 +1,5 @@
 import "./Homepage.css";
 import play from "/img/play.png";
-import info from "/img/info.png";
 import logostrangerthings from "/img/logostrangerthings.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -51,10 +50,6 @@ const Homepage = (): React.ReactElement => {
             <NavLink className="button-flex" to={paths.player}>
               <img src={play} alt="play icon" width="30" height="30" />
               Play
-            </NavLink>
-            <NavLink className="button-flex" to={paths.home}>
-              <img src={info} alt="info icon" width="30" height="30" />
-              More info
             </NavLink>
           </div>
         </article>
