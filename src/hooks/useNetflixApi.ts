@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { useIdToken } from "react-firebase-hooks/auth";
 import axios from "axios";
 import { API_KEY, TMBD_BASE_URL } from "../utils/constants";
-import { ApiMovies } from "../types";
+import { ApiMovies, ApiTv } from "../types";
 
 const useNetflixApi = () => {
   const [user] = useIdToken(auth);
@@ -33,7 +33,7 @@ const useNetflixApi = () => {
         const token = await user.getIdToken();
 
         const { data } = await axios.get<ApiMovies>(
-          `${TMBD_BASE_URL}/discover/movie?api_key=${API_KEY}`,
+          `${TMBD_BASE_URL}/discover/movie?api_key=${API_KEY}&page=1`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -48,9 +48,31 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
+  const getTv = useCallback(async () => {
+    try {
+      if (user) {
+        const token = await user.getIdToken();
+
+        const { data } = await axios.get<ApiTv>(
+          `${TMBD_BASE_URL}/discover/tv?api_key=${API_KEY}&page=1`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        const tvList = data.results;
+
+        return tvList;
+      }
+    } catch {
+      throw new Error("Can't get any movie");
+    }
+  }, [user]);
+
   return {
     getGenres,
     getMovies,
+    getTv,
   };
 };
 

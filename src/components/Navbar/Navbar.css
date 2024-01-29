@@ -31,11 +31,8 @@ nav {
 
 .navigation__link {
   width: max-content;
-  border: 1px solid white;
-  border-radius: 20px;
   padding: 7px 13px;
   font-size: 0.8rem;
-  background-color: rgba(41, 40, 40, 0.5);
 }
 
 .search-logout-container {

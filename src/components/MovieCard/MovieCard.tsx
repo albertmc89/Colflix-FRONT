@@ -1,22 +1,22 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import paths from "../../paths/paths";
 import "./Moviecard.css";
 import { Movie } from "../../types";
 import { useState } from "react";
 import favoriteEmptyIcon from "/img/favoriteEmptyIcon.png";
 import play2 from "/img/play2.png";
-import strangerthingsVideo from "/video/strangerthingsVideo.mp4";
 import info from "/img/info.png";
+import star from "/img/star.png";
+import eye from "/img/eye.png";
 
 interface MovieCardProps {
   movie: Movie;
 }
 
 const MovieCard = ({
-  movie: { title, poster_path },
+  movie: { poster_path, vote_average, popularity, release_date, title },
 }: MovieCardProps): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <article
@@ -38,14 +38,27 @@ const MovieCard = ({
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                 alt={`Moment of a fooball game in which ${title} plays with his team`}
               />
-              <video
-                className="movie__video-display"
-                src={strangerthingsVideo}
-                autoPlay
-                loop
-                muted
-                onClick={() => navigate(paths.player)}
-              />
+              <div className="movie__data">
+                <div className="movie__score">
+                  <span>{vote_average}</span>
+                  <img
+                    src={star}
+                    alt="star for qualifications"
+                    width="15"
+                    height="15"
+                  />
+                </div>
+                <div className="movie__views">
+                  <span>{popularity}</span>
+                  <img
+                    src={eye}
+                    alt="eye icon for views"
+                    width="12"
+                    height="12"
+                  />
+                </div>
+                <span className="movie__date">{release_date}</span>
+              </div>
             </div>
           </NavLink>
           <div className="movie__content">
@@ -53,32 +66,21 @@ const MovieCard = ({
               <NavLink to={paths.player}>
                 <h2 className="movie__name">{title}</h2>
               </NavLink>
-              <div className="movie__icons">
-                <NavLink className="button-hover" to={paths.player}>
-                  <img src={play2} alt="play icon" width="30" height="30" />
-                </NavLink>
-                <img
-                  className={"favorite-icon"}
-                  src={favoriteEmptyIcon}
-                  alt={"favorite"}
-                  width="30"
-                  height="30"
-                />
-                <NavLink className="button-hover" to={paths.player}>
-                  <img src={info} alt="play icon" width="30" height="30" />
-                </NavLink>
-              </div>
-
-              {/* <ul className="player__data-list">
-                <li className="player__data-detail">
-                  <span className="player__data-label"></span>
-                  {title}
-                </li>
-                <li className="player__data">
-                  <span className="player__data-label"></span>
-                  {title}
-                </li>
-              </ul> */}
+            </div>
+            <div className="movie__icons">
+              <NavLink className="button-hover" to={paths.player}>
+                <img src={play2} alt="play icon" width="25" height="25" />
+              </NavLink>
+              <img
+                className={"favorite-icon"}
+                src={favoriteEmptyIcon}
+                alt={"favorite"}
+                width="25"
+                height="25"
+              />
+              <NavLink className="button-hover" to={paths.player}>
+                <img src={info} alt="play icon" width="25" height="25" />
+              </NavLink>
             </div>
           </div>
         </div>

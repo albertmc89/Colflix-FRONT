@@ -1,4 +1,3 @@
-import "./Homepage.css";
 import play from "/img/play.png";
 import info from "/img/info.png";
 import logostrangerthings from "/img/logostrangerthings.png";
@@ -16,23 +15,23 @@ import { useAppDispatch } from "../../store";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import useNetflixApi from "../../hooks/useNetflixApi";
 
-const Homepage = (): React.ReactElement => {
+const Tv = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTv } = useNetflixApi();
+  const { getGenres, getTv } = useNetflixApi();
 
   useEffect(() => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const movies = await getMovies();
+        const tv = await getTv();
 
         dispatch(loadGenresActionCreator(genres!));
-        dispatch(loadMoviesActionCreator(movies!));
+        dispatch(loadMoviesActionCreator(tv!));
       })();
     }
-  }, [dispatch, getGenres, user, getMovies, getTv]);
+  }, [dispatch, getGenres, user, getTv]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
@@ -52,7 +51,7 @@ const Homepage = (): React.ReactElement => {
               <img src={play} alt="play icon" width="30" height="30" />
               Play
             </NavLink>
-            <NavLink className="button-flex" to={paths.home}>
+            <NavLink className="button-flex" to={paths.tv}>
               <img src={info} alt="info icon" width="30" height="30" />
               More info
             </NavLink>
@@ -64,4 +63,4 @@ const Homepage = (): React.ReactElement => {
   );
 };
 
-export default Homepage;
+export default Tv;

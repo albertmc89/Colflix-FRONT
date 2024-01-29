@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 150px;
-  height: 200px;
+  height: 210px;
   border-radius: 10px;
   box-shadow: -1px 4px 4px 1px rgba(255, 255, 255, 0.25);
   overflow: hidden;
@@ -16,25 +16,28 @@
 .hover {
   position: absolute;
   background-color: rgba(31, 30, 30, 0.958);
+  box-shadow: -1px 4px 4px 1px rgb(0, 0, 0);
   transition: 0.3s ease-in-out;
-  width: 200px;
+  width: 170px;
+  height: 230px;
   border-radius: 10px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .image-video-container {
   position: relative;
   border-radius: 5px;
-  width: 100%;
-  width: 200px;
+  width: 150px;
   transition: 0.3s ease-in-out;
   display: flex;
+  justify-content: space-between;
 }
 
 .movie__picture {
-  width: 100%;
-  height: 100%;
-  top: 0;
+  object-fit: cover;
   border-radius: 5px;
 }
 
@@ -50,7 +53,7 @@
 .movie__content {
   display: flex;
   flex-direction: column;
-  padding: 20px 18px;
+  gap: 10px;
   color: var(--white);
 }
 
@@ -62,17 +65,41 @@
 
 .movie__data-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .movie__name {
-  font-size: 0.6rem;
-  text-transform: uppercase;
+  font-size: 0.9rem;
   cursor: pointer;
-  text-align: center;
+  font-weight: 400;
+}
+
+.movie__score {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+}
+
+.movie__views {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.movie__data {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  color: var(--white);
+  gap: 10px;
+}
+
+.movie__date {
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .button-movie {
@@ -85,25 +112,8 @@
   cursor: pointer;
 }
 
-.player__data-list {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  gap: 4px;
-  font-size: 18px;
-}
-
-.player__data {
-  font-weight: 700;
-}
-
 .button-container {
   display: flex;
   align-items: center;
   gap: 15px;
-}
-
-.player__data-detail {
-  color: var(--white);
-  width: max-content;
 }
