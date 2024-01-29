@@ -8,6 +8,7 @@ import { auth } from "../../firebase";
 import Homepage from "../../pages/Homepage/Homepage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Player from "../Player/Player";
+import Tv from "../../pages/Tv/Tv";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -33,6 +34,14 @@ const App = (): React.ReactElement => {
             element={
               <ProtectedRoute>
                 <Player />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={paths.tv}
+            element={
+              <ProtectedRoute>
+                <Tv />
               </ProtectedRoute>
             }
           />

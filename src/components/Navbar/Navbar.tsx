@@ -108,7 +108,12 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
             />
           </div>
           <Button actionOnClick={logout} className="logout-button">
-            <img src="img/salir.png" alt="logout icon" width={28} height={28} />
+            <img
+              src="img/logout.png"
+              alt="logout icon"
+              width={28}
+              height={28}
+            />
           </Button>
         </div>
       </nav>
