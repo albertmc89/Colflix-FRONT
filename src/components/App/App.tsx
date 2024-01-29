@@ -9,6 +9,7 @@ import Homepage from "../../pages/Homepage/Homepage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Player from "../Player/Player";
 import Tv from "../../pages/Tv/Tv";
+import DetailPage from "../../pages/DetailPage/DetailPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -42,6 +43,14 @@ const App = (): React.ReactElement => {
             element={
               <ProtectedRoute>
                 <Tv />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={`${paths.home}/:id`}
+            element={
+              <ProtectedRoute>
+                <DetailPage />
               </ProtectedRoute>
             }
           />

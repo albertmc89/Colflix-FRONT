@@ -8,11 +8,6 @@
   overflow: hidden;
 }
 
-/* .movie__superior-container {
-  display: flex;
-  justify-content: end;
-} */
-
 .hover {
   position: absolute;
   background-color: rgba(31, 30, 30, 0.958);
@@ -53,7 +48,7 @@
 .movie__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   color: var(--white);
 }
 

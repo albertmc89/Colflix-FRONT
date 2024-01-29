@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { NetflixState } from "../types";
-import { Movie } from "../../types";
+import { ApiMovieType, Movie } from "../../types";
 
 const initialNetflixState: NetflixState = {
   movies: [],
@@ -29,10 +29,10 @@ const netflixSlice = createSlice({
     }),
     loadSelectedMovie: (
       currentMoviesState: NetflixState,
-      action: PayloadAction<Movie>,
+      action: PayloadAction<ApiMovieType>,
     ): NetflixState => ({
       ...currentMoviesState,
-      selectedPlayer: action.payload,
+      selectedMovie: action.payload,
     }),
   },
 });

@@ -14,7 +14,7 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({
-  movie: { poster_path, vote_average, popularity, release_date, title },
+  movie: { poster_path, vote_average, popularity, release_date, title, id },
 }: MovieCardProps): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -78,7 +78,7 @@ const MovieCard = ({
                 width="25"
                 height="25"
               />
-              <NavLink className="button-hover" to={paths.player}>
+              <NavLink className="button-hover" to={`${paths.home}/${id}`}>
                 <img src={info} alt="play icon" width="25" height="25" />
               </NavLink>
             </div>

@@ -7,10 +7,7 @@ import { auth } from "../../firebase";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import paths from "../../paths/paths";
-import {
-  loadGenresActionCreator,
-  loadMoviesActionCreator,
-} from "../../store/netflix/netflixSlice";
+import { loadGenresActionCreator } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import useNetflixApi from "../../hooks/useNetflixApi";
@@ -25,10 +22,8 @@ const Tv = (): React.ReactElement => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const tv = await getTv();
 
         dispatch(loadGenresActionCreator(genres!));
-        dispatch(loadMoviesActionCreator(tv!));
       })();
     }
   }, [dispatch, getGenres, user, getTv]);
