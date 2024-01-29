@@ -61,7 +61,7 @@ const useNetflixApi = () => {
         );
 
         const tvList = data.results;
-        console.log(tvList);
+
         return tvList;
       }
     } catch {
