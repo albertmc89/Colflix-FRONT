@@ -4,4 +4,5 @@ export interface NetflixState {
   movies: Movie[];
   genresLoaded: boolean;
   genres: [];
+  selectedPlayer?: Movie;
 }
