@@ -14,25 +14,25 @@
   }
 }
 
-@media (min-width: 515px) {
+@media (min-width: 700px) {
   .movies-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 685px) {
+@media (min-width: 1000px) {
   .movies-list {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1700px) {
   .movies-list {
     grid-template-columns: repeat(5, 1fr);
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 2050px) {
   .movies-list {
     grid-template-columns: repeat(6, 1fr);
   }
