@@ -81,10 +81,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: row-reverse;
+    padding: 20px;
   }
 
   .movie-detail__pic {
-    min-width: 100vh;
     min-height: 50vh;
   }
 }
