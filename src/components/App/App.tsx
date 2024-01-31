@@ -10,6 +10,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Player from "../Player/Player";
 import Tv from "../../pages/Tv/Tv";
 import DetailPage from "../../pages/DetailPage/DetailPage";
+import MoviesPage from "../../pages/MoviesPage/MoviesPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -43,6 +44,14 @@ const App = (): React.ReactElement => {
             element={
               <ProtectedRoute>
                 <Tv />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={paths.movies}
+            element={
+              <ProtectedRoute>
+                <MoviesPage />
               </ProtectedRoute>
             }
           />

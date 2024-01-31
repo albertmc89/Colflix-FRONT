@@ -1,6 +1,4 @@
-import "./Homepage.css";
 import play from "/img/play.png";
-import logostrangerthings from "/img/logostrangerthings.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
@@ -10,17 +8,17 @@ import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
   loadMoviesActionCreator,
-  loadloadTvShowsActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
+import CardSlider from "../../components/CardSlider/CardSlider";
 import useNetflixApi from "../../hooks/useNetflixApi";
-import Slider from "../../components/Slider/Slider";
+import "./MoviesPage.css";
 
-const Homepage = (): React.ReactElement => {
+const MoviesPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTv } = useNetflixApi();
+  const { getGenres, getMovies } = useNetflixApi();
 
   useEffect(() => {
     if (user) {
@@ -34,18 +32,6 @@ const Homepage = (): React.ReactElement => {
     }
   }, [dispatch, getGenres, user, getMovies]);
 
-  useEffect(() => {
-    if (user) {
-      (async () => {
-        const genres = await getGenres();
-        const tvShows = await getTv();
-
-        dispatch(loadGenresActionCreator(genres!));
-        dispatch(loadloadTvShowsActionCreator(tvShows!));
-      })();
-    }
-  }, [dispatch, getGenres, user, getTv]);
-
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
     return () => (window.onscroll = null);
@@ -54,12 +40,9 @@ const Homepage = (): React.ReactElement => {
   return (
     <>
       {user && <Navbar isScrolled={isScrolled} />}
-      <div className="wrap-home-container">
+      <div className="wrap-movies-container">
         <article className="title-wrapper">
-          <div className="logo-series">
-            <img src={logostrangerthings} alt="logo netflix" />
-          </div>
-          <div className="button-container">
+          <div className="button-container__movies">
             <NavLink className="button-flex" to={paths.player}>
               <img src={play} alt="play icon" width="30" height="30" />
               Play
@@ -67,9 +50,9 @@ const Homepage = (): React.ReactElement => {
           </div>
         </article>
       </div>
-      <Slider />
+      <CardSlider />
     </>
   );
 };
 
-export default Homepage;
+export default MoviesPage;
