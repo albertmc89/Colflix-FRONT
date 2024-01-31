@@ -114,6 +114,10 @@
   gap: 15px;
 }
 
+.null {
+  display: none;
+}
+
 @media (min-width: 800px) {
   .movie {
     width: 220px;

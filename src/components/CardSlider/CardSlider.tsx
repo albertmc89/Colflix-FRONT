@@ -12,7 +12,7 @@ const CardSlider = (): React.ReactElement => {
 
   return (
     <>
-      {pathname === paths.home ? (
+      {pathname === paths.movies ? (
         <ul className="movies-list">
           {movies.map((movie) => (
             <li key={movie.id}>

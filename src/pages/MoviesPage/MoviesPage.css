@@ -1,0 +1,26 @@
+.wrap-movies-container {
+  background-image: var(--background-movies);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.button-container__movies {
+  margin-top: 120px;
+}
+
+.button-flex__movies {
+  width: 150px;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(82, 81, 81, 0.769);
+  justify-content: space-evenly;
+  color: var(--white);
+}
