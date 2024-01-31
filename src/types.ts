@@ -59,7 +59,7 @@ export interface ApiTvType {
 }
 
 export interface Tv {
-  id: number;
+  id: string;
   name: string;
   backdrop_path: string;
   first_air_date: string;
