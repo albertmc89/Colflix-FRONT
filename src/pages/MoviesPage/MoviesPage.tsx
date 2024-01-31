@@ -43,7 +43,7 @@ const MoviesPage = (): React.ReactElement => {
       <div className="wrap-movies-container">
         <article className="title-wrapper">
           <div className="button-container__movies">
-            <NavLink className="button-flex" to={paths.player}>
+            <NavLink className="button-flex__movies" to={paths.player}>
               <img src={play} alt="play icon" width="30" height="30" />
               Play
             </NavLink>
