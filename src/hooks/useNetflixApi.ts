@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { useIdToken } from "react-firebase-hooks/auth";
 import axios from "axios";
 import { API_KEY, TMBD_BASE_URL } from "../utils/constants";
-import { ApiMovieType, ApiMovies, ApiTv } from "../types";
+import { ApiGenres, ApiMovieType, ApiMovies, ApiTv } from "../types";
 import paths from "../paths/paths";
 import { useNavigate } from "react-router-dom";
 
@@ -16,17 +16,40 @@ const useNetflixApi = () => {
       if (user) {
         const token = await user.getIdToken();
 
-        const { data } = await axios.get<[]>(
+        const { data } = await axios.get<ApiGenres>(
           `${TMBD_BASE_URL}/genre/movie/list?api_key=${API_KEY}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
         );
 
-        return data;
+        const genresList = data.genres;
+
+        return genresList;
       }
     } catch {
       throw new Error("Can't get any genre");
+    }
+  }, [user]);
+
+  const getTrendingMovies = useCallback(async () => {
+    try {
+      if (user) {
+        const token = await user.getIdToken();
+
+        const { data } = await axios.get<ApiMovies>(
+          `${TMBD_BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=1`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        const movieList = data.results;
+
+        return movieList;
+      }
+    } catch {
+      throw new Error("Can't get any movie");
     }
   }, [user]);
 
@@ -45,6 +68,27 @@ const useNetflixApi = () => {
         const movieList = data.results;
 
         return movieList;
+      }
+    } catch {
+      throw new Error("Can't get any movie");
+    }
+  }, [user]);
+
+  const getTrendingTv = useCallback(async () => {
+    try {
+      if (user) {
+        const token = await user.getIdToken();
+
+        const { data } = await axios.get<ApiTv>(
+          `${TMBD_BASE_URL}/trending/tv/day?api_key=${API_KEY}&page=1`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        const tvList = data.results;
+
+        return tvList;
       }
     } catch {
       throw new Error("Can't get any movie");
@@ -102,6 +146,8 @@ const useNetflixApi = () => {
     getMovies,
     getTv,
     loadSelectedMovieApi,
+    getTrendingMovies,
+    getTrendingTv,
   };
 };
 

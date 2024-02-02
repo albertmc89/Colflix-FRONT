@@ -3,7 +3,7 @@
   --secondary-color: #e50914;
   --terciary-color: #831c1c;
   --minor-color: #a7a7a7;
-  --detail-color: #414141;
+  --detail-color: rgba(65, 65, 65, 0.75);
   --state-color: #126010;
   --button-opacity: rgb(47, 47, 47);
   --white: #fff;
