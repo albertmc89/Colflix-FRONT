@@ -10,6 +10,8 @@ import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
   loadMoviesActionCreator,
+  loadTrendingMoviesActionCreator,
+  loadTrendingTvShowsActionCreator,
   loadloadTvShowsActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
@@ -20,7 +22,32 @@ const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTv } = useNetflixApi();
+  const { getGenres, getMovies, getTv, getTrendingMovies, getTrendingTv } =
+    useNetflixApi();
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const genres = await getGenres();
+        const trendingMovies = await getTrendingMovies();
+
+        dispatch(loadGenresActionCreator(genres!));
+        dispatch(loadTrendingMoviesActionCreator(trendingMovies!));
+      })();
+    }
+  }, [dispatch, user, getTrendingMovies, getGenres]);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const genres = await getGenres();
+        const trendingTvShows = await getTrendingTv();
+
+        dispatch(loadGenresActionCreator(genres!));
+        dispatch(loadTrendingTvShowsActionCreator(trendingTvShows!));
+      })();
+    }
+  }, [dispatch, user, getTrendingTv, getGenres]);
 
   useEffect(() => {
     if (user) {

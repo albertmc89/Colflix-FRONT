@@ -1,9 +1,11 @@
-import { ApiMovieType, Movie, Tv } from "../types";
+import { ApiMovieType, Genre, Movie, Tv } from "../types";
 
 export interface NetflixState {
   movies: Movie[];
   genresLoaded: boolean;
-  genres: [];
+  genres: Genre[];
   selectedMovie?: ApiMovieType;
   tvshows: Tv[];
+  trendingMovies: Movie[];
+  trendingTvShows: Tv[];
 }

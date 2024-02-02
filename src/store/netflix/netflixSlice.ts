@@ -1,12 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { NetflixState } from "../types";
-import { ApiMovieType, Movie, Tv } from "../../types";
+import { ApiMovieType, Genre, Movie, Tv } from "../../types";
 
 const initialNetflixState: NetflixState = {
   movies: [],
   genresLoaded: false,
   genres: [],
   tvshows: [],
+  trendingMovies: [],
+  trendingTvShows: [],
 };
 
 const netflixSlice = createSlice({
@@ -15,7 +17,7 @@ const netflixSlice = createSlice({
   reducers: {
     loadGenres: (
       currentGenresState,
-      action: PayloadAction<[]>,
+      action: PayloadAction<Genre[]>,
     ): NetflixState => ({
       ...currentGenresState,
       genresLoaded: true,
@@ -28,12 +30,26 @@ const netflixSlice = createSlice({
       ...currentMoviesState,
       movies: action.payload,
     }),
+    loadTrendingMovies: (
+      currentMoviesState,
+      action: PayloadAction<Movie[]>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      trendingMovies: action.payload,
+    }),
     loadTvShows: (
       currentTvState,
       action: PayloadAction<Tv[]>,
     ): NetflixState => ({
       ...currentTvState,
       tvshows: action.payload,
+    }),
+    loadTrendingTvShows: (
+      currentTvState,
+      action: PayloadAction<Tv[]>,
+    ): NetflixState => ({
+      ...currentTvState,
+      trendingTvShows: action.payload,
     }),
     loadSelectedMovie: (
       currentMoviesState: NetflixState,
@@ -51,4 +67,6 @@ export const {
   loadMovies: loadMoviesActionCreator,
   loadTvShows: loadloadTvShowsActionCreator,
   loadSelectedMovie: loadSelectedMovieActionCreator,
+  loadTrendingMovies: loadTrendingMoviesActionCreator,
+  loadTrendingTvShows: loadTrendingTvShowsActionCreator,
 } = netflixSlice.actions;
