@@ -28,7 +28,7 @@
   padding: 40px 20px;
   border-radius: 5px;
   height: 550px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,11 +123,10 @@ input::placeholder {
   display: flex;
   align-items: center;
   gap: 5px;
-  color: rgb(69, 69, 238);
+  color: rgb(78, 145, 226);
   text-decoration: underline;
   font-size: 1.1rem;
-  padding-top: 3px;
-  padding: 0 20px;
+  padding-top: 5px;
 }
 
 .popcorn {
@@ -137,9 +136,17 @@ input::placeholder {
 
 .promo__text {
   color: var(--white);
-  text-align: center;
   border-bottom: 8px solid rgba(73, 72, 72, 0.7);
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-subtext {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .promo-text__title {
@@ -239,5 +246,20 @@ input::placeholder {
 
   .form-container {
     width: 50%;
+  }
+
+  .promo__text {
+    flex-direction: row;
+  }
+
+  .promo-subtext {
+    font-size: 1.5rem;
+    margin-left: 100px;
+    align-items: start;
+  }
+
+  .promo-text__title {
+    font-size: 3rem;
+    margin: 0;
   }
 }

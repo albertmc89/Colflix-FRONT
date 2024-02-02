@@ -1,3 +1,12 @@
+export interface Genre {
+  id: string;
+  name: string;
+}
+
+export interface ApiGenres {
+  genres: Genre[];
+}
+
 export interface ApiMovieType {
   id: string;
   backdrop_path: string;

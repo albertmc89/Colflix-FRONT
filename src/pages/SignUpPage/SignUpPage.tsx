@@ -127,34 +127,43 @@ const SignUpPage = (): React.ReactElement => {
           </div>
         </div>
         <div className="promo__text">
-          <p className="promo-text__title">Enjoy on your TV</p>
-          <p>
-            Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray
-            players, and more.
-          </p>
+          <div className="promo-subtext">
+            <p className="promo-text__title">Enjoy on your TV</p>
+            <p>
+              Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV,
+              Blu-ray players, and more.
+            </p>
+          </div>
           <img src={promotv} alt="tv display" />
         </div>
+
         <div className="promo__text">
-          <p className="promo-text__title">Watch everywhere</p>
-          <p>
-            Stream unlimited movies and TV shows on your phone, tablet, laptop,
-            and TV.
-          </p>
+          <div className="promo-subtext">
+            <p className="promo-text__title">Watch everywhere</p>
+            <p>
+              Stream unlimited movies and TV shows on your phone, tablet,
+              laptop, and TV.
+            </p>
+          </div>
           <img src={promotv} alt="displays in phones" />
         </div>
         <div className="promo__text">
-          <p className="promo-text__title">Create profiles for kids</p>
-          <p>
-            Send kids on adventures with their favorite characters in a space
-            made just for them—free with your membership.
-          </p>
+          <div className="promo-subtext">
+            <p className="promo-text__title">Create profiles for kids</p>
+            <p>
+              Send kids on adventures with their favorite characters in a space
+              made just for them—free with your membership.
+            </p>
+          </div>
           <img src={kids} alt="" />
         </div>
         <div className="promo__text">
-          <p className="promo-text__title">
-            Download your shows to watch offline
-          </p>
-          <p>Watch on a plane, train, or submarine...</p>
+          <div className="promo-subtext">
+            <p className="promo-text__title">
+              Download your shows to watch offline
+            </p>
+            <p>Watch on a plane, train, or submarine...</p>
+          </div>
           <div className="download-container">
             <img src={photodownload} alt="tv show inside a phone" />
             <div className="promo__download">

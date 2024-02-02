@@ -50,7 +50,7 @@ const MovieCard = ({
                 />
                 <div className="movie__data">
                   <div className="movie__score">
-                    <span>{vote_average}</span>
+                    <span>{Math.trunc(vote_average)}</span>
                     <img
                       src={star}
                       alt="star for qualifications"
@@ -59,7 +59,7 @@ const MovieCard = ({
                     />
                   </div>
                   <div className="movie__views">
-                    <span>{popularity}</span>
+                    <span>{Math.ceil(Math.trunc(popularity) / 1000)}M</span>
                     <img
                       src={eye}
                       alt="eye icon for views"

@@ -1,0 +1,10 @@
+.genres {
+  padding: 20px;
+}
+
+.genres__list {
+  padding: 4px;
+  background-color: var(--detail-color);
+  color: var(--white);
+  border: none;
+}
