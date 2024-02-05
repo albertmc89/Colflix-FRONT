@@ -10,6 +10,7 @@ const initialNetflixState: NetflixState = {
   trendingMovies: [],
   trendingTvShows: [],
   topMovies: [],
+  upcomingMovies: [],
 };
 
 const netflixSlice = createSlice({
@@ -45,6 +46,13 @@ const netflixSlice = createSlice({
       ...currentMoviesState,
       topMovies: action.payload,
     }),
+    loadUpcomingMovies: (
+      currentMoviesState,
+      action: PayloadAction<Movie[]>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      upcomingMovies: action.payload,
+    }),
     loadTvShows: (
       currentTvState,
       action: PayloadAction<Tv[]>,
@@ -78,4 +86,5 @@ export const {
   loadTrendingMovies: loadTrendingMoviesActionCreator,
   loadTrendingTvShows: loadTrendingTvShowsActionCreator,
   loadTopMovies: loadTopMoviesActionCreator,
+  loadUpcomingMovies: loadUpcomingMoviesActionCreator,
 } = netflixSlice.actions;

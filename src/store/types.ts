@@ -9,4 +9,5 @@ export interface NetflixState {
   trendingMovies: Movie[];
   trendingTvShows: Tv[];
   topMovies: Movie[];
+  upcomingMovies: Movie[];
 }
