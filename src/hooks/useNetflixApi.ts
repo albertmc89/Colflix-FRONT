@@ -95,6 +95,27 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
+  const getUpcomingMovies = useCallback(async () => {
+    try {
+      if (user) {
+        const token = await user.getIdToken();
+
+        const { data } = await axios.get<ApiMovies>(
+          `${TMBD_BASE_URL}/movie/upcoming?api_key=${API_KEY}&page=1`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        const movieList = data.results;
+
+        return movieList;
+      }
+    } catch {
+      throw new Error("Can't get any movie");
+    }
+  }, [user]);
+
   const getTrendingTv = useCallback(async () => {
     try {
       if (user) {
@@ -170,6 +191,7 @@ const useNetflixApi = () => {
     getTrendingMovies,
     getTrendingTv,
     getTopMovies,
+    getUpcomingMovies,
   };
 };
 
