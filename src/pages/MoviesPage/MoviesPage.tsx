@@ -9,6 +9,7 @@ import {
   loadGenresActionCreator,
   loadMoviesActionCreator,
   loadTopMoviesActionCreator,
+  loadUpcomingMoviesActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
 import CardSlider from "../../components/CardSlider/CardSlider";
@@ -19,7 +20,8 @@ const MoviesPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTopMovies } = useNetflixApi();
+  const { getGenres, getMovies, getTopMovies, getUpcomingMovies } =
+    useNetflixApi();
 
   useEffect(() => {
     if (user) {
@@ -27,13 +29,15 @@ const MoviesPage = (): React.ReactElement => {
         const genres = await getGenres();
         const movies = await getMovies();
         const topMovies = await getTopMovies();
+        const upcomingMovies = await getUpcomingMovies();
 
         dispatch(loadGenresActionCreator(genres!));
         dispatch(loadMoviesActionCreator(movies!));
         dispatch(loadTopMoviesActionCreator(topMovies!));
+        dispatch(loadUpcomingMoviesActionCreator(upcomingMovies!));
       })();
     }
-  }, [dispatch, getGenres, user, getMovies, getTopMovies]);
+  }, [dispatch, getGenres, user, getMovies, getTopMovies, getUpcomingMovies]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);

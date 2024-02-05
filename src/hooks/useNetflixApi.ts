@@ -95,28 +95,28 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
-  const getTrendingTv = useCallback(async () => {
+  const getUpcomingMovies = useCallback(async () => {
     try {
       if (user) {
         const token = await user.getIdToken();
 
-        const { data } = await axios.get<ApiTv>(
-          `${TMBD_BASE_URL}/trending/tv/day?api_key=${API_KEY}&page=1`,
+        const { data } = await axios.get<ApiMovies>(
+          `${TMBD_BASE_URL}/movie/upcoming?api_key=${API_KEY}&page=1`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
         );
 
-        const tvList = data.results;
+        const movieList = data.results;
 
-        return tvList;
+        return movieList;
       }
     } catch {
       throw new Error("Can't get any movie");
     }
   }, [user]);
 
-  const getUpcomingTv = useCallback(async () => {
+  const getTrendingTv = useCallback(async () => {
     try {
       if (user) {
         const token = await user.getIdToken();
@@ -191,7 +191,7 @@ const useNetflixApi = () => {
     getTrendingMovies,
     getTrendingTv,
     getTopMovies,
-    getUpcomingTv,
+    getUpcomingMovies,
   };
 };
 

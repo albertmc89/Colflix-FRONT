@@ -14,6 +14,9 @@ const CardSlider = (): React.ReactElement => {
     (state) => state.netflixState.trendingMovies,
   );
   const topMovies = useAppSelector((state) => state.netflixState.topMovies);
+  const upcomingMovies = useAppSelector(
+    (state) => state.netflixState.upcomingMovies,
+  );
 
   return (
     <>
@@ -34,6 +37,14 @@ const CardSlider = (): React.ReactElement => {
               {topMovies.map((top) => (
                 <li key={top.id}>
                   <MovieCard movie={top} />
+                </li>
+              ))}
+            </ul>
+            <h2 className="section__title"> UPCOMING MOVIES</h2>
+            <ul className="movies-list">
+              {upcomingMovies.map((upcoming) => (
+                <li key={upcoming.id}>
+                  <MovieCard movie={upcoming} />
                 </li>
               ))}
             </ul>
