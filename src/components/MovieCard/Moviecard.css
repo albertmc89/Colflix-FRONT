@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 150px;
-  height: 210px;
+  height: 230px;
   border-radius: 10px;
   box-shadow: -1px 4px 4px 1px rgba(255, 255, 255, 0.25);
   overflow: hidden;
+  position: relative;
 }
 
 .hover {
@@ -13,7 +14,7 @@
   background-color: rgba(31, 30, 30, 0.958);
   box-shadow: -1px 4px 4px 1px rgb(0, 0, 0);
   transition: 0.3s ease-in-out;
-  width: 190px;
+  width: 150px;
   height: 230px;
   border-radius: 10px;
   padding: 10px;
@@ -28,7 +29,7 @@
   width: 170px;
   transition: 0.3s ease-in-out;
   display: flex;
-  justify-content: space-between;
+  gap: 5px;
 }
 
 .movie__picture {
@@ -94,8 +95,8 @@
   gap: 10px;
 }
 
-.movie__data {
-  font-size: 0.7rem;
+.movie__date {
+  font-size: 0.6rem;
 }
 
 .button-movie {
@@ -106,6 +107,11 @@
 
 .button-hover {
   cursor: pointer;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
 }
 
 .button-container {
@@ -123,11 +129,12 @@
   .hover {
     width: 230px;
     height: 330px;
-    gap: 20px;
+    gap: 40px;
   }
 
   .image-video-container {
     width: 100%;
+    height: 150px;
   }
 
   .movie__content {
@@ -149,7 +156,16 @@
   }
 
   .movie__score {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .movie__icons {
+    gap: 25px;
   }
 }
 
@@ -162,7 +178,7 @@
   .hover {
     width: 330px;
     height: 480px;
-    gap: 50px;
+    gap: 110px;
   }
 
   .movie__picture {
@@ -170,20 +186,49 @@
     border-radius: 5px;
   }
 
+  .image-video-container {
+    width: 100%;
+    justify-content: start;
+    height: 200px;
+  }
+
+  .button-movie {
+    width: 100%;
+    height: 120px;
+    display: flex;
+  }
+
   .movie__content {
     gap: 50px;
   }
 
   .movie__data {
-    margin-left: 50px;
+    font-size: 1.3rem;
+  }
+
+  .movie__date {
+    font-size: 1rem;
   }
 
   .movie__name {
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.7rem;
+    font-weight: 500;
+  }
+
+  .movie__views {
+    font-size: 1.2rem;
   }
 
   .movie__score {
-    font-size: 2.4rem;
+    font-size: 2.9rem;
+  }
+
+  .movie__icons {
+    gap: 35px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
   }
 }

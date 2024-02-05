@@ -59,7 +59,7 @@ const MovieCard = ({
                     />
                   </div>
                   <div className="movie__views">
-                    <span>{Math.ceil(Math.trunc(popularity) / 1000)}M</span>
+                    <span>{Math.round(Math.trunc(popularity) / 1000)}M</span>
                     <img
                       src={eye}
                       alt="eye icon for views"
@@ -83,17 +83,15 @@ const MovieCard = ({
               </div>
               <div className="movie__icons">
                 <NavLink className="button-hover" to={paths.player}>
-                  <img src={play2} alt="play icon" width="25" height="25" />
+                  <img className="icon" src={play2} alt="play icon" />
                 </NavLink>
                 <img
-                  className={"favorite-icon"}
+                  className={"icon"}
                   src={favoriteEmptyIcon}
                   alt={"favorite"}
-                  width="25"
-                  height="25"
                 />
                 <NavLink className="button-hover" to={`${paths.home}/${id}`}>
-                  <img src={info} alt="play icon" width="25" height="25" />
+                  <img src={info} className="icon" alt="play icon" />
                 </NavLink>
               </div>
             </div>
