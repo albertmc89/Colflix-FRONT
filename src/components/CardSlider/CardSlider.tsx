@@ -10,19 +10,42 @@ const CardSlider = (): React.ReactElement => {
   const { pathname } = useLocation();
   const movies = useAppSelector((state) => state.netflixState.movies);
   const tvshows = useAppSelector((state) => state.netflixState.tvshows);
+  const trendingMovies = useAppSelector(
+    (state) => state.netflixState.trendingMovies,
+  );
+  const topMovies = useAppSelector((state) => state.netflixState.topMovies);
 
   return (
     <>
       <section className="list-section">
         <GenreSlider />
         {pathname === paths.movies ? (
-          <ul className="movies-list">
-            {movies.map((movie) => (
-              <li key={movie.id}>
-                <MovieCard movie={movie} />
-              </li>
-            ))}
-          </ul>
+          <>
+            <h2 className="section__title"> TRENDING MOVIES</h2>
+            <ul className="movies-list">
+              {trendingMovies.map((trend) => (
+                <li key={trend.id}>
+                  <MovieCard movie={trend} />
+                </li>
+              ))}
+            </ul>
+            <h2 className="section__title"> TOP MOVIES</h2>
+            <ul className="movies-list">
+              {topMovies.map((top) => (
+                <li key={top.id}>
+                  <MovieCard movie={top} />
+                </li>
+              ))}
+            </ul>
+            <h2 className="section__title"> MOVIES</h2>
+            <ul className="movies-list">
+              {movies.map((movie) => (
+                <li key={movie.id}>
+                  <MovieCard movie={movie} />
+                </li>
+              ))}
+            </ul>
+          </>
         ) : (
           <ul className="movies-list">
             {tvshows.map((tvshow) => (
