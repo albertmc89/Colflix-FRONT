@@ -95,5 +95,5 @@ export const {
   loadTrendingTvShows: loadTrendingTvShowsActionCreator,
   loadTopMovies: loadTopMoviesActionCreator,
   loadUpcomingMovies: loadUpcomingMoviesActionCreator,
-  loadTopTvShows: loadloadTopTvShowActionCreator,
+  loadTopTvShows: loadTopTvShowActionCreator,
 } = netflixSlice.actions;
