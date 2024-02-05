@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { useRef } from "react";
 import { useAppSelector } from "../../store";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Slider.css";
@@ -13,11 +14,13 @@ const Slider = (): React.ReactElement => {
     (state) => state.netflixState.trendingTvShows,
   );
 
+  const ref = useRef(null);
+
   return (
     <>
       <section className="list-section">
         <h2 className="section__title"> TRENDING MOVIES</h2>
-        <ul className="movies-list">
+        <ul className="movies-list" ref={ref}>
           {trendingMovies.map((trend) => (
             <li key={trend.id}>
               <MovieCard movie={trend} />
@@ -33,7 +36,7 @@ const Slider = (): React.ReactElement => {
           ))}
         </ul>
         <h2 className="section__title">TRENDING TV SHOWS</h2>
-        <ul className="tv-list">
+        <ul className="tv-list" ref={ref}>
           {trendingTvShows.map((trendtv) => (
             <li key={trendtv.id}>
               <MovieCard movie={trendtv} />
