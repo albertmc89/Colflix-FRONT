@@ -11,6 +11,7 @@ const initialNetflixState: NetflixState = {
   trendingTvShows: [],
   topMovies: [],
   upcomingMovies: [],
+  topTvShows: [],
 };
 
 const netflixSlice = createSlice({
@@ -67,6 +68,13 @@ const netflixSlice = createSlice({
       ...currentTvState,
       trendingTvShows: action.payload,
     }),
+    loadTopTvShows: (
+      currentTvState,
+      action: PayloadAction<Tv[]>,
+    ): NetflixState => ({
+      ...currentTvState,
+      topTvShows: action.payload,
+    }),
     loadSelectedMovie: (
       currentMoviesState: NetflixState,
       action: PayloadAction<ApiMovieType>,
@@ -87,4 +95,5 @@ export const {
   loadTrendingTvShows: loadTrendingTvShowsActionCreator,
   loadTopMovies: loadTopMoviesActionCreator,
   loadUpcomingMovies: loadUpcomingMoviesActionCreator,
+  loadTopTvShows: loadTopTvShowActionCreator,
 } = netflixSlice.actions;

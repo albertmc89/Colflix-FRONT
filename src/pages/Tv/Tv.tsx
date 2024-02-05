@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
+  loadTopTvShowActionCreator,
   loadloadTvShowsActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
@@ -19,19 +20,21 @@ const Tv = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getTv } = useNetflixApi();
+  const { getGenres, getTv, getTopTv } = useNetflixApi();
 
   useEffect(() => {
     if (user) {
       (async () => {
         const genres = await getGenres();
         const tvShows = await getTv();
+        const topTvShows = await getTopTv();
 
         dispatch(loadGenresActionCreator(genres!));
         dispatch(loadloadTvShowsActionCreator(tvShows!));
+        dispatch(loadTopTvShowActionCreator(topTvShows!));
       })();
     }
-  }, [dispatch, getGenres, user, getTv]);
+  }, [dispatch, getGenres, user, getTv, getTopTv]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
