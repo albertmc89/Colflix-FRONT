@@ -27,6 +27,7 @@ export interface ApiMovieType {
   runtime: number;
   status: string;
   revenue: number;
+  isFavourite: boolean;
 }
 
 export interface Movie {
@@ -43,6 +44,7 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   name: string;
+  isFavourite: boolean;
 }
 
 export interface ApiMovies {
@@ -64,6 +66,7 @@ export interface ApiTvType {
     video: boolean,
     vote_average: number,
     vote_count: number,
+    isFavourite: boolean,
   ];
 }
 
@@ -82,6 +85,7 @@ export interface Tv {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  isFavourite: boolean;
 }
 
 export interface ApiTv {

@@ -8,6 +8,10 @@ import play2 from "/img/play2.png";
 import info from "/img/info.png";
 import star from "/img/star.png";
 import eye from "/img/eye.png";
+import useNetflixApi from "../../hooks/useNetflixApi";
+import { useAppDispatch } from "../../store";
+import { loadToggleMovieActionCreator } from "../../store/netflix/netflixSlice";
+import Button from "../Button/Button";
 
 interface MovieCardProps {
   movie: Movie;
@@ -22,10 +26,19 @@ const MovieCard = ({
     title,
     id,
     name,
+    isFavourite,
   },
 }: MovieCardProps): React.ReactElement => {
   const [isHovered, setIsHovered] = useState(false);
   const { pathname } = useLocation();
+  const { modifyMovieApi } = useNetflixApi();
+  const dispatch = useAppDispatch();
+
+  const toggleMovie = async () => {
+    const toggledMovie = await modifyMovieApi(id!, isFavourite!);
+
+    dispatch(loadToggleMovieActionCreator(toggledMovie));
+  };
 
   return (
     <>
@@ -85,11 +98,16 @@ const MovieCard = ({
                 <NavLink className="button-hover" to={paths.player}>
                   <img className="icon" src={play2} alt="play icon" />
                 </NavLink>
-                <img
-                  className={"icon"}
-                  src={favoriteEmptyIcon}
-                  alt={"favorite"}
-                />
+                <Button
+                  actionOnClick={toggleMovie}
+                  className={isFavourite ? "bought" : "sold"}
+                >
+                  <img
+                    className={"icon"}
+                    src={favoriteEmptyIcon}
+                    alt={"favorite"}
+                  />
+                </Button>
                 <NavLink className="button-hover" to={`${paths.home}/${id}`}>
                   <img src={info} className="icon" alt="play icon" />
                 </NavLink>
