@@ -82,6 +82,16 @@ const netflixSlice = createSlice({
       ...currentMoviesState,
       selectedMovie: action.payload,
     }),
+    toggleMovie: (
+      currentMoviesState,
+      action: PayloadAction<ApiMovieType>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      selectedMovie: action.payload,
+      movies: currentMoviesState.movies.map((movie) =>
+        movie.id === action.payload.id ? action.payload : movie,
+      ),
+    }),
   },
 });
 
@@ -96,4 +106,5 @@ export const {
   loadTopMovies: loadTopMoviesActionCreator,
   loadUpcomingMovies: loadUpcomingMoviesActionCreator,
   loadTopTvShows: loadTopTvShowActionCreator,
+  toggleMovie: loadToggleMovieActionCreator,
 } = netflixSlice.actions;
