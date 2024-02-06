@@ -204,6 +204,31 @@ const useNetflixApi = () => {
     [user, navigate],
   );
 
+  const modifyMovieApi = useCallback(
+    async (id: string, isFavourite: boolean) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
+
+        const token = await user.getIdToken();
+        const newId = Number(id);
+        const { data } = await axios.patch<ApiMovieType>(
+          `${TMBD_BASE_URL}/movie/${newId}?api_key=${API_KEY}`,
+          { isFavourite },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        return data;
+      } catch (error: unknown) {
+        throw new Error("Couldn't modify the player");
+      }
+    },
+    [user],
+  );
+
   return {
     getGenres,
     getMovies,
@@ -214,6 +239,7 @@ const useNetflixApi = () => {
     getTopMovies,
     getUpcomingMovies,
     getTopTv,
+    modifyMovieApi,
   };
 };
 
