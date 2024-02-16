@@ -53,26 +53,28 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
-  const getMovies = useCallback(async () => {
-    try {
-      if (user) {
-        const token = await user.getIdToken();
+  const getMovies = useCallback(
+    async (currentPage: number) => {
+      try {
+        if (user) {
+          const token = await user.getIdToken();
 
-        const { data } = await axios.get<ApiMovies>(
-          `${TMBD_BASE_URL}/discover/movie?api_key=${API_KEY}&page=1`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+          const { data } = await axios.get<ApiMovies>(
+            `${TMBD_BASE_URL}/discover/movie?&api_key=${API_KEY}&page=${currentPage}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
+          const movieList = data.results;
 
-        const movieList = data.results;
-
-        return movieList;
+          return movieList;
+        }
+      } catch {
+        throw new Error("Can't get any movie");
       }
-    } catch {
-      throw new Error("Can't get any movie");
-    }
-  }, [user]);
+    },
+    [user],
+  );
 
   const getTopMovies = useCallback(async () => {
     try {
@@ -137,26 +139,29 @@ const useNetflixApi = () => {
     }
   }, [user]);
 
-  const getTv = useCallback(async () => {
-    try {
-      if (user) {
-        const token = await user.getIdToken();
+  const getTv = useCallback(
+    async (currentPage: number) => {
+      try {
+        if (user) {
+          const token = await user.getIdToken();
 
-        const { data } = await axios.get<ApiTv>(
-          `${TMBD_BASE_URL}/discover/tv?api_key=${API_KEY}&page=1`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+          const { data } = await axios.get<ApiTv>(
+            `${TMBD_BASE_URL}/discover/tv?api_key=${API_KEY}&page=${currentPage}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            },
+          );
 
-        const tvList = data.results;
+          const tvList = data.results;
 
-        return tvList;
+          return tvList;
+        }
+      } catch {
+        throw new Error("Can't get any movie");
       }
-    } catch {
-      throw new Error("Can't get any movie");
-    }
-  }, [user]);
+    },
+    [user],
+  );
 
   const getTopTv = useCallback(async () => {
     try {
@@ -190,6 +195,31 @@ const useNetflixApi = () => {
         const token = await user.getIdToken();
         const { data } = await axios.get<ApiMovieType>(
           `${TMBD_BASE_URL}/movie/${newId}?api_key=${API_KEY}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        return data;
+      } catch (error: unknown) {
+        navigate(paths.home);
+        throw new Error("Couldn't load the movie");
+      }
+    },
+    [user, navigate],
+  );
+
+  const getTrailerMovies = useCallback(
+    async (id: string) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
+
+        const newId = Number(id);
+        const token = await user.getIdToken();
+        const { data } = await axios.get<ApiMovieType>(
+          `${TMBD_BASE_URL}/movie/${newId}/videos?api_key=${API_KEY}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           },
@@ -240,6 +270,7 @@ const useNetflixApi = () => {
     getUpcomingMovies,
     getTopTv,
     modifyMovieApi,
+    getTrailerMovies,
   };
 };
 

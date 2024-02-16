@@ -1,4 +1,4 @@
-import { ApiMovieType, Genre, Movie, Tv } from "../types";
+import { ApiMovieType, ApiTrailersType, Genre, Movie, Tv } from "../types";
 
 export interface NetflixState {
   movies: Movie[];
@@ -11,4 +11,6 @@ export interface NetflixState {
   topMovies: Movie[];
   upcomingMovies: Movie[];
   topTvShows: Tv[];
+  trailerMovie?: ApiTrailersType;
+  searchTerm: string;
 }

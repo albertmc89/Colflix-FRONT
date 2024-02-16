@@ -28,6 +28,7 @@ export interface ApiMovieType {
   status: string;
   revenue: number;
   isFavourite: boolean;
+  key: string;
 }
 
 export interface Movie {
@@ -90,4 +91,19 @@ export interface Tv {
 
 export interface ApiTv {
   results: Tv[];
+}
+
+export interface ApiTrailersType {
+  key: string;
+}
+
+export interface Trailer {
+  id: string;
+  name: string;
+  key: string;
+}
+
+export interface ApiTrailers {
+  id: string;
+  results: Trailer[];
 }

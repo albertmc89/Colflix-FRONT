@@ -22,7 +22,11 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
   };
 
   const [showSearch, setShowSearch] = useState(false);
-  const [inputHover, setInputHover] = useState(false);
+  const [inputHover, setInputHover] = useState<boolean>(false);
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -81,7 +85,10 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
           </li>
         </ul>
         <div className="search-logout-container">
-          <div className={`search ${showSearch ? "show-search" : ""}`}>
+          <form
+            onSubmit={handleSearch}
+            className={`search ${showSearch ? "show-search" : ""}`}
+          >
             <Button
               className="search-button"
               onFocus={() => setShowSearch(true)}
@@ -106,7 +113,7 @@ const Navigation = ({ isScrolled }: NavProps): React.ReactElement => {
                 setInputHover(false);
               }}
             />
-          </div>
+          </form>
           <Button actionOnClick={logout} className="logout-button">
             <img
               src="img/logout.png"

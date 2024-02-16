@@ -63,7 +63,7 @@ const MovieCard = ({
                 />
                 <div className="movie__data">
                   <div className="movie__score">
-                    <span>{Math.trunc(vote_average)}</span>
+                    <span>{Math.round(vote_average * 10) / 10}</span>
                     <img
                       src={star}
                       alt="star for qualifications"
@@ -87,7 +87,7 @@ const MovieCard = ({
             <div className="movie__content">
               <div className="movie__data-container">
                 <NavLink to={paths.player}>
-                  {pathname === paths.home ? (
+                  {pathname !== paths.tv ? (
                     <h2 className="movie__name">{title}</h2>
                   ) : (
                     <h2 className="movie__name">{name}</h2>
@@ -95,7 +95,7 @@ const MovieCard = ({
                 </NavLink>
               </div>
               <div className="movie__icons">
-                <NavLink className="button-hover" to={paths.player}>
+                <NavLink className="button-hover" to={`${paths.player}`}>
                   <img className="icon" src={play2} alt="play icon" />
                 </NavLink>
                 <Button

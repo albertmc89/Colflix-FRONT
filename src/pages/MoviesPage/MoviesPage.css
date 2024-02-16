@@ -24,3 +24,20 @@
   justify-content: space-evenly;
   color: var(--white);
 }
+
+.pagination {
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 40px;
+  gap: 20px;
+}
+
+.pagination__next,
+.pagination__last {
+  color: var(--white);
+  background-color: rgba(226, 13, 16, 1);
+  border-radius: 5px;
+  padding: 5px;
+  width: 90px;
+}

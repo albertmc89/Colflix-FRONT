@@ -19,6 +19,7 @@ import useNetflixApi from "../../hooks/useNetflixApi";
 const Tv = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
   const { getGenres, getTv, getTopTv } = useNetflixApi();
 
@@ -26,7 +27,7 @@ const Tv = (): React.ReactElement => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const tvShows = await getTv();
+        const tvShows = await getTv(currentPage);
         const topTvShows = await getTopTv();
 
         dispatch(loadGenresActionCreator(genres!));
@@ -34,7 +35,7 @@ const Tv = (): React.ReactElement => {
         dispatch(loadTopTvShowActionCreator(topTvShows!));
       })();
     }
-  }, [dispatch, getGenres, user, getTv, getTopTv]);
+  }, [dispatch, getGenres, user, getTv, getTopTv, currentPage]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
@@ -62,6 +63,24 @@ const Tv = (): React.ReactElement => {
         </article>
       </div>
       <CardSlider />
+      <div className="pagination">
+        <button
+          className="pagination__last"
+          onClick={() => {
+            setCurrentPage(currentPage - 1);
+          }}
+        >
+          ANTERIOR
+        </button>
+        <button
+          className="pagination__next"
+          onClick={() => {
+            setCurrentPage(currentPage + 1);
+          }}
+        >
+          SIGUIENTE
+        </button>
+      </div>
     </>
   );
 };

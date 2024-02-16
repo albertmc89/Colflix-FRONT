@@ -5,8 +5,11 @@ import MovieCard from "../MovieCard/MovieCard";
 import "./Slider.css";
 
 const Slider = (): React.ReactElement => {
-  const movies = useAppSelector((state) => state.netflixState.movies);
-  const tvshows = useAppSelector((state) => state.netflixState.tvshows);
+  const topMovies = useAppSelector((state) => state.netflixState.topMovies);
+  const topTvshows = useAppSelector((state) => state.netflixState.topTvShows);
+  const upcomingMovies = useAppSelector(
+    (state) => state.netflixState.upcomingMovies,
+  );
   const trendingMovies = useAppSelector(
     (state) => state.netflixState.trendingMovies,
   );
@@ -27,9 +30,17 @@ const Slider = (): React.ReactElement => {
             </li>
           ))}
         </ul>
-        <h2 className="section__title">MOVIES</h2>
+        <h2 className="section__title"> UPCOMING MOVIES</h2>
+        <ul className="movies-list" ref={ref}>
+          {upcomingMovies.map((trend) => (
+            <li key={trend.id}>
+              <MovieCard movie={trend} />
+            </li>
+          ))}
+        </ul>
+        <h2 className="section__title"> TOP MOVIES</h2>
         <ul className="movies-list">
-          {movies.map((movie) => (
+          {topMovies.map((movie) => (
             <li key={movie.id}>
               <MovieCard movie={movie} />
             </li>
@@ -43,9 +54,9 @@ const Slider = (): React.ReactElement => {
             </li>
           ))}
         </ul>
-        <h2 className="section__title">TV SHOWS</h2>
+        <h2 className="section__title">TOP TV SHOWS</h2>
         <ul className="tv-list">
-          {tvshows.map((tvshow) => (
+          {topTvshows.map((tvshow) => (
             <li key={tvshow.id}>
               <MovieCard movie={tvshow} />
             </li>

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { NetflixState } from "../types";
-import { ApiMovieType, Genre, Movie, Tv } from "../../types";
+import { ApiMovieType, ApiTrailersType, Genre, Movie, Tv } from "../../types";
 
 const initialNetflixState: NetflixState = {
   movies: [],
@@ -12,6 +12,7 @@ const initialNetflixState: NetflixState = {
   topMovies: [],
   upcomingMovies: [],
   topTvShows: [],
+  searchTerm: "",
 };
 
 const netflixSlice = createSlice({
@@ -92,6 +93,20 @@ const netflixSlice = createSlice({
         movie.id === action.payload.id ? action.payload : movie,
       ),
     }),
+    loadTrailerMovie: (
+      currentMoviesState: NetflixState,
+      action: PayloadAction<ApiTrailersType>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      trailerMovie: action.payload,
+    }),
+    changeSearchTerm: (
+      currentMoviesState: NetflixState,
+      action: PayloadAction<string>,
+    ): NetflixState => ({
+      ...currentMoviesState,
+      searchTerm: action.payload,
+    }),
   },
 });
 
@@ -107,4 +122,6 @@ export const {
   loadUpcomingMovies: loadUpcomingMoviesActionCreator,
   loadTopTvShows: loadTopTvShowActionCreator,
   toggleMovie: loadToggleMovieActionCreator,
+  loadTrailerMovie: loadTrailerMovieActionCreator,
+  changeSearchTerm: loadchangeSearchTermActionCreator,
 } = netflixSlice.actions;
