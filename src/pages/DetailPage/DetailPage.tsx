@@ -4,7 +4,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { NavLink, useParams } from "react-router-dom";
 import useNetflixApi from "../../hooks/useNetflixApi";
-import { loadSelectedMovieActionCreator } from "../../store/netflix/netflixSlice";
+import {
+  loadSelectedMovieActionCreator,
+  loadTrailerMovieActionCreator,
+} from "../../store/netflix/netflixSlice";
 import "./DetailPage.css";
 import back from "/img/back.png";
 import hd from "/img/hd.png";
@@ -21,7 +24,7 @@ const DetailPage = (): React.ReactElement => {
   const selectedMovie = useAppSelector(
     (state) => state.netflixState.selectedMovie,
   );
-  const { loadSelectedMovieApi } = useNetflixApi();
+  const { loadSelectedMovieApi, getTrailerMovies } = useNetflixApi();
   const [user] = useAuthState(auth);
 
   const { id } = useParams();
@@ -30,11 +33,13 @@ const DetailPage = (): React.ReactElement => {
     (async () => {
       if (user && id) {
         const selectedMovieApi = await loadSelectedMovieApi(id);
+        const trailer = await getTrailerMovies(id);
 
         dispatch(loadSelectedMovieActionCreator(selectedMovieApi));
+        dispatch(loadTrailerMovieActionCreator(trailer));
       }
     })();
-  }, [dispatch, loadSelectedMovieApi, user, id]);
+  }, [dispatch, loadSelectedMovieApi, getTrailerMovies, user, id]);
 
   return (
     <div className="detail-page">
@@ -73,6 +78,9 @@ const DetailPage = (): React.ReactElement => {
             </NavLink>
           </div>
           <p className="movie-detail__description">{selectedMovie?.overview}</p>
+          <NavLink to={`${selectedMovie?.homepage}`}>
+            {selectedMovie?.homepage}
+          </NavLink>
           <div className="movie__icons">
             <img
               className={"favorite-icon"}

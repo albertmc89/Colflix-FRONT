@@ -10,86 +10,64 @@ const CardSlider = (): React.ReactElement => {
   const { pathname } = useLocation();
   const movies = useAppSelector((state) => state.netflixState.movies);
   const tvshows = useAppSelector((state) => state.netflixState.tvshows);
-  const trendingMovies = useAppSelector(
-    (state) => state.netflixState.trendingMovies,
-  );
-  const topMovies = useAppSelector((state) => state.netflixState.topMovies);
-  const upcomingMovies = useAppSelector(
-    (state) => state.netflixState.upcomingMovies,
-  );
-  const topTvShows = useAppSelector((state) => state.netflixState.topTvShows);
-  const trendingTvShows = useAppSelector(
-    (state) => state.netflixState.trendingTvShows,
-  );
 
   return (
     <>
-      <section className="list-section">
-        <GenreSlider />
-        {pathname === paths.movies ? (
-          <>
-            <h2 className="section__title"> TRENDING MOVIES</h2>
-            <ul className="movies-list">
-              {trendingMovies.map((trend) => (
-                <li key={trend.id}>
-                  <MovieCard movie={trend} />
-                </li>
-              ))}
-            </ul>
-            <h2 className="section__title"> TOP MOVIES</h2>
-            <ul className="movies-list">
-              {topMovies.map((top) => (
-                <li key={top.id}>
-                  <MovieCard movie={top} />
-                </li>
-              ))}
-            </ul>
-            <h2 className="section__title"> UPCOMING MOVIES</h2>
-            <ul className="movies-list">
-              {upcomingMovies.map((upcoming) => (
-                <li key={upcoming.id}>
-                  <MovieCard movie={upcoming} />
-                </li>
-              ))}
-            </ul>
-            <h2 className="section__title"> MOVIES</h2>
-            <ul className="movies-list">
-              {movies.map((movie) => (
-                <li key={movie.id}>
-                  <MovieCard movie={movie} />
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <>
-            <h2 className="section__title"> TRENDING TV SHOWS</h2>
-            <ul className="movies-list">
-              {trendingTvShows.map((trend) => (
-                <li key={trend.id}>
-                  <MovieCard movie={trend} />
-                </li>
-              ))}
-            </ul>
-            <h2 className="section__title"> TV SHOWS</h2>
-            <ul className="movies-list">
-              {tvshows.map((tvshow) => (
-                <li key={tvshow.id}>
-                  <MovieCard movie={tvshow} />
-                </li>
-              ))}
-            </ul>
-            <h2 className="section__title"> TOP TV SHOWS</h2>
-            <ul className="movies-list">
-              {topTvShows.map((top) => (
-                <li key={top.id}>
-                  <MovieCard movie={top} />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </section>
+      {pathname === paths.home ? (
+        <section className="list-section">
+          <GenreSlider />
+          {pathname === paths.movies ? (
+            <>
+              <h2 className="section__title"> MOVIES</h2>
+              <ul className="movies-list">
+                {movies.map((movie) => (
+                  <li key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <>
+              <h2 className="section__title"> TV SHOWS</h2>
+              <ul className="movies-list">
+                {tvshows.map((tvshow) => (
+                  <li key={tvshow.id}>
+                    <MovieCard movie={tvshow} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </section>
+      ) : (
+        <section className="list-section">
+          <GenreSlider />
+          {pathname === paths.movies ? (
+            <>
+              <h2 className="section__title"> MOVIES</h2>
+              <ul className="page-list">
+                {movies.map((movie) => (
+                  <li key={movie.id}>
+                    <MovieCard movie={movie} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <>
+              <h2 className="section__title"> TV SHOWS</h2>
+              <ul className="page-list">
+                {tvshows.map((tvshow) => (
+                  <li key={tvshow.id}>
+                    <MovieCard movie={tvshow} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </section>
+      )}
     </>
   );
 };

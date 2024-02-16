@@ -8,8 +8,6 @@ import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
   loadMoviesActionCreator,
-  loadTopMoviesActionCreator,
-  loadUpcomingMoviesActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
 import CardSlider from "../../components/CardSlider/CardSlider";
@@ -19,25 +17,21 @@ import "./MoviesPage.css";
 const MoviesPage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTopMovies, getUpcomingMovies } =
-    useNetflixApi();
+  const { getGenres, getMovies } = useNetflixApi();
 
   useEffect(() => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const movies = await getMovies();
-        const topMovies = await getTopMovies();
-        const upcomingMovies = await getUpcomingMovies();
+        const movies = await getMovies(currentPage);
 
         dispatch(loadGenresActionCreator(genres!));
         dispatch(loadMoviesActionCreator(movies!));
-        dispatch(loadTopMoviesActionCreator(topMovies!));
-        dispatch(loadUpcomingMoviesActionCreator(upcomingMovies!));
       })();
     }
-  }, [dispatch, getGenres, user, getMovies, getTopMovies, getUpcomingMovies]);
+  }, [dispatch, getGenres, user, getMovies, currentPage]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
@@ -58,6 +52,24 @@ const MoviesPage = (): React.ReactElement => {
         </article>
       </div>
       <CardSlider />
+      <div className="pagination">
+        <button
+          className="pagination__last"
+          onClick={() => {
+            setCurrentPage(currentPage - 1), window.scrollTo(0, 500);
+          }}
+        >
+          LAST
+        </button>
+        <button
+          className="pagination__next"
+          onClick={() => {
+            setCurrentPage(currentPage + 1), window.scrollTo(0, 500);
+          }}
+        >
+          NEXT
+        </button>
+      </div>
     </>
   );
 };

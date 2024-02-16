@@ -12,6 +12,15 @@
   overflow-x: scroll;
 }
 
+.page-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 20px;
+}
+
 @media (min-width: 475px) {
   .movies-list {
     grid-template-columns: repeat(2, 1fr);

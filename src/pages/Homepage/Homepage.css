@@ -9,12 +9,17 @@
   flex-direction: column;
   gap: 40px;
   justify-content: center;
+  mask-image: linear-gradient(to bottom, black 60%, rgba(0, 0, 0, 0.77) 90%);
 }
 
 .title-wrapper {
   display: flex;
   flex-direction: column;
   gap: 50px;
+}
+
+.picture {
+  mask-image: linear-gradient(to bottom, black 20%, transparent 90%);
 }
 
 .button-container {

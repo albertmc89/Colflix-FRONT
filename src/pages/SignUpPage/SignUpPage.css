@@ -72,6 +72,7 @@ input::placeholder {
   border-radius: 5px;
   background-color: var(--secondary-color);
   color: white;
+  width: 125px;
 }
 
 .button--solid {
@@ -254,7 +255,6 @@ input::placeholder {
 
   .promo-subtext {
     font-size: 1.5rem;
-    margin-left: 100px;
     align-items: start;
   }
 

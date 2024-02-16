@@ -38,6 +38,8 @@ nav {
 .search-logout-container {
   display: flex;
   padding: 10px;
+  background-color: rgba(0, 0, 0, 0.574);
+  border-radius: 10px;
 }
 
 .search {
@@ -82,13 +84,13 @@ nav {
 }
 
 .logout-button {
-  width: 40px;
+  width: 55px;
   display: flex;
   align-items: center;
 }
 
 .scrolled {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 @media (min-width: 768px) {

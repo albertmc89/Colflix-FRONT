@@ -9,10 +9,11 @@ import { NavLink } from "react-router-dom";
 import paths from "../../paths/paths";
 import {
   loadGenresActionCreator,
-  loadMoviesActionCreator,
+  loadTopMoviesActionCreator,
+  loadTopTvShowActionCreator,
   loadTrendingMoviesActionCreator,
   loadTrendingTvShowsActionCreator,
-  loadloadTvShowsActionCreator,
+  loadUpcomingMoviesActionCreator,
 } from "../../store/netflix/netflixSlice";
 import { useAppDispatch } from "../../store";
 import useNetflixApi from "../../hooks/useNetflixApi";
@@ -22,20 +23,28 @@ const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const dispatch = useAppDispatch();
-  const { getGenres, getMovies, getTv, getTrendingMovies, getTrendingTv } =
-    useNetflixApi();
+  const {
+    getGenres,
+    getTopMovies,
+    getTopTv,
+    getTrendingMovies,
+    getTrendingTv,
+    getUpcomingMovies,
+  } = useNetflixApi();
 
   useEffect(() => {
     if (user) {
       (async () => {
         const genres = await getGenres();
         const trendingMovies = await getTrendingMovies();
+        const upComingMovies = await getUpcomingMovies();
 
         dispatch(loadGenresActionCreator(genres!));
         dispatch(loadTrendingMoviesActionCreator(trendingMovies!));
+        dispatch(loadUpcomingMoviesActionCreator(upComingMovies!));
       })();
     }
-  }, [dispatch, user, getTrendingMovies, getGenres]);
+  }, [dispatch, user, getTrendingMovies, getGenres, getUpcomingMovies]);
 
   useEffect(() => {
     if (user) {
@@ -53,25 +62,25 @@ const Homepage = (): React.ReactElement => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const movies = await getMovies();
+        const topMovies = await getTopMovies();
 
         dispatch(loadGenresActionCreator(genres!));
-        dispatch(loadMoviesActionCreator(movies!));
+        dispatch(loadTopMoviesActionCreator(topMovies!));
       })();
     }
-  }, [dispatch, getGenres, user, getMovies]);
+  }, [dispatch, getGenres, user, getTopMovies]);
 
   useEffect(() => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const tvShows = await getTv();
+        const topTvShows = await getTopTv();
 
         dispatch(loadGenresActionCreator(genres!));
-        dispatch(loadloadTvShowsActionCreator(tvShows!));
+        dispatch(loadTopTvShowActionCreator(topTvShows!));
       })();
     }
-  }, [dispatch, getGenres, user, getTv]);
+  }, [dispatch, getGenres, user, getTopTv]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
