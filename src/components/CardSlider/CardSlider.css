@@ -2,6 +2,14 @@
   background-color: var(--black);
 }
 
+.section__head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
 .movies-list {
   display: flex;
   grid-template-columns: repeat(1, 1fr);

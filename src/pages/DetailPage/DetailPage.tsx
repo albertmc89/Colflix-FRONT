@@ -4,10 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { NavLink, useParams } from "react-router-dom";
 import useNetflixApi from "../../hooks/useNetflixApi";
-import {
-  loadSelectedMovieActionCreator,
-  loadTrailerMovieActionCreator,
-} from "../../store/netflix/netflixSlice";
+import { loadSelectedMovieActionCreator } from "../../store/netflix/netflixSlice";
 import "./DetailPage.css";
 import back from "/img/back.png";
 import hd from "/img/hd.png";
@@ -24,7 +21,7 @@ const DetailPage = (): React.ReactElement => {
   const selectedMovie = useAppSelector(
     (state) => state.netflixState.selectedMovie,
   );
-  const { loadSelectedMovieApi, getTrailerMovies } = useNetflixApi();
+  const { loadSelectedMovieApi } = useNetflixApi();
   const [user] = useAuthState(auth);
 
   const { id } = useParams();
@@ -33,13 +30,11 @@ const DetailPage = (): React.ReactElement => {
     (async () => {
       if (user && id) {
         const selectedMovieApi = await loadSelectedMovieApi(id);
-        const trailer = await getTrailerMovies(id);
 
         dispatch(loadSelectedMovieActionCreator(selectedMovieApi));
-        dispatch(loadTrailerMovieActionCreator(trailer));
       }
     })();
-  }, [dispatch, loadSelectedMovieApi, getTrailerMovies, user, id]);
+  }, [dispatch, loadSelectedMovieApi, user, id]);
 
   return (
     <div className="detail-page">

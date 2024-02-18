@@ -12,5 +12,4 @@ export interface NetflixState {
   upcomingMovies: Movie[];
   topTvShows: Tv[];
   trailerMovie?: ApiTrailersType;
-  searchTerm: string;
 }

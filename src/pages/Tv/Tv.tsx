@@ -1,5 +1,4 @@
 import play from "/img/play.png";
-import info from "/img/info.png";
 import logostrangerthings from "/img/logostrangerthings.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -15,11 +14,13 @@ import {
 import { useAppDispatch } from "../../store";
 import CardSlider from "../../components/CardSlider/CardSlider";
 import useNetflixApi from "../../hooks/useNetflixApi";
+import Button from "../../components/Button/Button";
 
 const Tv = (): React.ReactElement => {
   const [user] = useAuthState(auth);
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterMovies, setFilterMovies] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const { getGenres, getTv, getTopTv } = useNetflixApi();
 
@@ -27,7 +28,7 @@ const Tv = (): React.ReactElement => {
     if (user) {
       (async () => {
         const genres = await getGenres();
-        const tvShows = await getTv(currentPage);
+        const tvShows = await getTv(currentPage, filterMovies!);
         const topTvShows = await getTopTv();
 
         dispatch(loadGenresActionCreator(genres!));
@@ -35,11 +36,18 @@ const Tv = (): React.ReactElement => {
         dispatch(loadTopTvShowActionCreator(topTvShows!));
       })();
     }
-  }, [dispatch, getGenres, user, getTv, getTopTv, currentPage]);
+  }, [dispatch, getGenres, user, getTv, getTopTv, currentPage, filterMovies]);
 
   window.onscroll = () => {
     setIsScrolled(window.scrollY === 0 ? false : true);
     return () => (window.onscroll = null);
+  };
+
+  const [showSearch, setShowSearch] = useState(false);
+  const [inputHover, setInputHover] = useState<boolean>(false);
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
@@ -55,30 +63,60 @@ const Tv = (): React.ReactElement => {
               <img src={play} alt="play icon" width="30" height="30" />
               Play
             </NavLink>
-            <NavLink className="button-flex" to={paths.tv}>
-              <img src={info} alt="info icon" width="30" height="30" />
-              More info
-            </NavLink>
           </div>
         </article>
+      </div>
+      <div className="search-container">
+        <form
+          onSubmit={handleSearch}
+          className={`search ${showSearch ? "show-search" : ""}`}
+        >
+          <Button
+            className="search-button"
+            onFocus={() => setShowSearch(true)}
+            onMouseLeave={() => {
+              if (inputHover) setShowSearch(false);
+            }}
+          >
+            <img src="img/lupa.png" alt="lupa icon" width={24} height={24} />
+          </Button>
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search Movie..."
+            onChange={(e) => {
+              setFilterMovies(e.target.value);
+            }}
+            onMouseEnter={() => {
+              setInputHover(true);
+            }}
+            onMouseLeave={() => {
+              setInputHover(false);
+            }}
+            onBlur={() => {
+              setShowSearch(false);
+              setInputHover(false);
+            }}
+          />
+        </form>
       </div>
       <CardSlider />
       <div className="pagination">
         <button
           className="pagination__last"
           onClick={() => {
-            setCurrentPage(currentPage - 1);
+            setCurrentPage(currentPage - 1), window.scrollTo(0, 500);
           }}
         >
-          ANTERIOR
+          LAST
         </button>
         <button
           className="pagination__next"
           onClick={() => {
-            setCurrentPage(currentPage + 1);
+            setCurrentPage(currentPage + 1), window.scrollTo(0, 500);
           }}
         >
-          SIGUIENTE
+          NEXT
         </button>
       </div>
     </>
