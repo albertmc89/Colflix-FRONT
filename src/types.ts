@@ -53,22 +53,21 @@ export interface ApiMovies {
 }
 
 export interface ApiTvType {
-  results: [
-    id: number,
-    name: string,
-    backdrop_path: string,
-    original_language: string,
-    original_title: string,
-    overview: string,
-    popularity: number,
-    poster_path: string,
-    release_date: string,
-    title: string,
-    video: boolean,
-    vote_average: number,
-    vote_count: number,
-    isFavourite: boolean,
-  ];
+  id: number;
+  name: string;
+  backdrop_path: string;
+  original_language: string;
+  first_air_date: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  isFavourite: boolean;
 }
 
 export interface Tv {

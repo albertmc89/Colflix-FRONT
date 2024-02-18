@@ -12,7 +12,6 @@ const initialNetflixState: NetflixState = {
   topMovies: [],
   upcomingMovies: [],
   topTvShows: [],
-  searchTerm: "",
 };
 
 const netflixSlice = createSlice({
@@ -100,13 +99,6 @@ const netflixSlice = createSlice({
       ...currentMoviesState,
       trailerMovie: action.payload,
     }),
-    changeSearchTerm: (
-      currentMoviesState: NetflixState,
-      action: PayloadAction<string>,
-    ): NetflixState => ({
-      ...currentMoviesState,
-      searchTerm: action.payload,
-    }),
   },
 });
 
@@ -123,5 +115,4 @@ export const {
   loadTopTvShows: loadTopTvShowActionCreator,
   toggleMovie: loadToggleMovieActionCreator,
   loadTrailerMovie: loadTrailerMovieActionCreator,
-  changeSearchTerm: loadchangeSearchTermActionCreator,
 } = netflixSlice.actions;
